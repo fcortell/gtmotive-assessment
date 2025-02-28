@@ -42,7 +42,7 @@ namespace GtMotive.Estimate.Microservice.Host.Infrastructure.Swagger
 
                 operation.Security = new List<OpenApiSecurityRequirement>
                 {
-                    new OpenApiSecurityRequirement
+                    new()
                     {
                         {
                             new OpenApiSecurityScheme

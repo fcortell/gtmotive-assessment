@@ -85,7 +85,7 @@ namespace GtMotive.Estimate.Microservice.Host.DependencyInjection
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger(options =>
             {
-                if (pathBase.IsDefault == false)
+                if (!pathBase.IsDefault)
                 {
                     options.SerializeAsV2 = true;
                     options.RouteTemplate = "swagger/{documentName}/swagger.json";
@@ -93,7 +93,7 @@ namespace GtMotive.Estimate.Microservice.Host.DependencyInjection
                     {
                         document.Servers = new List<OpenApiServer>
                         {
-                            new OpenApiServer
+                            new()
                             {
                                 Url = $"{request.Scheme}://{request.Host.Value}{pathBase.CurrentWithoutTrailingSlash}"
                             }

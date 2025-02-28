@@ -32,7 +32,7 @@
 
         <!-- Azure -->
         <PackageReference Update="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.2" />
-        <PackageReference Update="Azure.Identity" Version="1.6.0" />
+        <PackageReference Update="Azure.Identity" Version="1.13.2" />
         <PackageReference Update="Azure.Security.KeyVault.Secrets" Version="4.3.0" />
         <PackageReference Update="Azure.Messaging.ServiceBus" Version="7.9.0" />
 
@@ -52,7 +52,7 @@
         <PackageReference Update="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
         <PackageReference Update="Microsoft.VisualStudio.Azure.Kubernetes.Tools.Targets" Version="1.0.0" />
 
-        <PackageReference Update="Microsoft.Identity.Client" Version="4.7.1" />
+        <PackageReference Update="Microsoft.Identity.Client" Version="4.67.2" />
         <PackageReference Update="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="5.2.5" />
         <PackageReference Update="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.5.0" />
 
@@ -73,10 +73,9 @@
         <PackageReference Update="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
         <PackageReference Update="IdentityModel.AspNetCore" Version="3.0.0" />
 
-        <!-- Cosmos DB -->
-        <PackageReference Update="MongoDB.Bson" Version="2.17.0" />
-        <PackageReference Update="MongoDB.Driver" Version="2.17.0" />
-        <PackageReference Update="Microsoft.Azure.Cosmos" Version="3.16.0" />
+        <!-- Mongo DB -->
+        <PackageReference Update="MongoDB.Bson" Version="3.2.1" />
+        <PackageReference Update="MongoDB.Driver" Version="3.2.1" />
 
         <!-- misc -->
         <PackageReference Update="Newtonsoft.Json" Version="12.0.2" />

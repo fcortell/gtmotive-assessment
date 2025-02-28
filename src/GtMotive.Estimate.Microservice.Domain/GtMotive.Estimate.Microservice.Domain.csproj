@@ -3,6 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
       <RuleTargetType>Full</RuleTargetType>
+      <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.Extensions.Options" Version="9.0.2" />
+  </ItemGroup>
 
 </Project>

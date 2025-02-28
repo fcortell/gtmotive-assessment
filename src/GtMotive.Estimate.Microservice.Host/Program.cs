@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
@@ -38,7 +39,10 @@ if (!builder.Environment.IsDevelopment())
 builder.Logging.ClearProviders();
 
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console(outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
+    .WriteTo.Console(
+        restrictedToMinimumLevel: LogEventLevel.Debug,
+        outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}",
+        formatProvider: new CultureInfo("es-ES"))
     .CreateBootstrapLogger();
 
 builder.Host.UseSerilog();
@@ -101,14 +105,18 @@ Log.Logger = builder.Environment.IsDevelopment() ?
         .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
         .MinimumLevel.Override("System", LogEventLevel.Warning)
         .WriteTo.Console(
-            outputTemplate:
-            "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}",
+            restrictedToMinimumLevel: LogEventLevel.Debug,
+            outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}",
+            formatProvider: new CultureInfo("es-ES"),
             theme: AnsiConsoleTheme.Literate)
         .CreateLogger() :
     new LoggerConfiguration()
         .Enrich.FromLogContext()
         .Enrich.WithProperty("Application", "addoperation")
-        .WriteTo.Console(outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
+        .WriteTo.Console(
+            restrictedToMinimumLevel: LogEventLevel.Debug,
+            outputTemplate: "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}",
+            formatProvider: new CultureInfo("es-ES"))
         .WriteTo.ApplicationInsights(
             app.Services.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces)
         .ReadFrom.Configuration(builder.Configuration)
@@ -116,7 +124,7 @@ Log.Logger = builder.Environment.IsDevelopment() ?
 
 var pathBase = new PathBase(builder.Configuration.GetValue("PathBase", defaultValue: PathBase.DefaultPathBase));
 
-if (pathBase.IsDefault == false)
+if (!pathBase.IsDefault)
 {
     app.UsePathBase(pathBase.CurrentWithoutTrailingSlash);
 }
