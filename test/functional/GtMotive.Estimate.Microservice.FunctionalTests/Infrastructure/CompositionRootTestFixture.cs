@@ -25,7 +25,7 @@ namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
 
             var services = new ServiceCollection();
             Configuration = configuration;
-            ConfigureServices(services);
+            ConfigureServices(services, configuration);
             services.AddSingleton<IConfiguration>(configuration);
             _serviceProvider = services.BuildServiceProvider();
         }
@@ -92,11 +92,11 @@ namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
             _serviceProvider.Dispose();
         }
 
-        private static void ConfigureServices(IServiceCollection services)
+        private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddApiDependencies();
             services.AddLogging();
-            services.AddBaseInfrastructure(true);
+            services.AddBaseInfrastructure(configuration, true);
         }
     }
 }

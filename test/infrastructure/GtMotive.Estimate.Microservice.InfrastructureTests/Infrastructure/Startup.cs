@@ -39,7 +39,7 @@ namespace GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public static void ConfigureServices(IServiceCollection services)
+        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
 
@@ -49,7 +49,7 @@ namespace GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure
             services.AddControllers(ApiConfiguration.ConfigureControllers)
                 .WithApiControllers();
 
-            services.AddBaseInfrastructure(true);
+            services.AddBaseInfrastructure(configuration, true);
         }
     }
 }
