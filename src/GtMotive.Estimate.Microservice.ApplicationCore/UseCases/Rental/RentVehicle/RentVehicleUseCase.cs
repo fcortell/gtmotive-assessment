@@ -55,7 +55,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Rent.RentVehic
                 throw new DomainException($"Vehicle {input.VehicleId} not available to rent.");
             }
 
-            var rental = new Rental()
+            var rental = new Domain.Rental.Rental()
             {
                 Comment = input.Comments,
                 CustomerId = input.CustomerId,
