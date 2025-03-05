@@ -30,7 +30,7 @@ namespace GtMotive.Estimate.Microservice.Domain.Rental
         /// <summary>
         /// Gets or sets the end date of the rental period.
         /// </summary>
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         /// <summary>
         /// Gets or sets the unique identifier for the rental.
