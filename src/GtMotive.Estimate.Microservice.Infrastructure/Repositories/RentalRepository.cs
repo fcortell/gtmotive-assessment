@@ -19,7 +19,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
                 throw new ArgumentNullException(string.Empty);
             }
 
-            _dbContext = mongoService.MongoClient.GetDatabase("GTMotive").GetCollection<Rental>("Rental");
+            _dbContext = mongoService.MongoClient.GetDatabase("GTMotive").GetCollection<Rental>("Rentals");
         }
 
         public async Task AddAsync(Rental rental)

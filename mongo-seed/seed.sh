@@ -1,2 +1,2 @@
-mongoimport --uri "mongodb://root:example@mongo-container:27017" --db rentals --collection GTMotive --authenticationDatabase=admin --type json --file /jsondata/rentals.json --jsonArray
-mongoimport --uri "mongodb://root:example@mongo-container:27017" --db vehicles --collection GTMotive --authenticationDatabase=admin --type json --file /jsondata/vehicles.json --jsonArray
+mongoimport --uri "mongodb://root:example@mongo-container:27017" --db GTMotive --collection Rentals --authenticationDatabase=admin --type json --file /jsondata/rentals.json --jsonArray
+mongoimport --uri "mongodb://root:example@mongo-container:27017" --db GTMotive --collection Vehicles --authenticationDatabase=admin --type json --file /jsondata/vehicles.json --jsonArray

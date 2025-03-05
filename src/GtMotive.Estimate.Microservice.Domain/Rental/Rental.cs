@@ -19,6 +19,7 @@ namespace GtMotive.Estimate.Microservice.Domain.Rental
         /// <summary>
         /// Gets or sets the ID of the vehicle being rented.
         /// </summary>
+        ///
         public string VehicleId { get; set; }
 
         /// <summary>

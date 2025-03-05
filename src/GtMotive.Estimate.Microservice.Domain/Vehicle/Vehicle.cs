@@ -68,6 +68,7 @@ namespace GtMotive.Estimate.Microservice.Domain.Vehicle
         /// <summary>
         /// Gets or sets the unique identifier for the vehicle.
         /// </summary>
+        ///
         public string Id { get; set; }
 
         /// <summary>

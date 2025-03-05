@@ -28,7 +28,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb
                 BsonClassMap.RegisterClassMap<Vehicle>(x =>
                 {
                     x.AutoMap();
-                    x.MapIdProperty(y => y.Id).SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(MongoDB.Bson.BsonType.ObjectId));
+                    x.MapIdMember(y => y.Id).SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(MongoDB.Bson.BsonType.ObjectId));
                     x.MapProperty(y => y.LicensePlate).SetIsRequired(true);
                     x.MapProperty(y => y.Model).SetIsRequired(true);
                     x.MapProperty(y => y.Brand).SetIsRequired(true);
@@ -50,6 +50,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb
                 {
                     x.AutoMap();
                     x.MapIdProperty(y => y.Id).SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(MongoDB.Bson.BsonType.ObjectId));
+                    x.MapProperty(y => y.VehicleId).SetIsRequired(true).SetSerializer(new StringSerializer(MongoDB.Bson.BsonType.ObjectId));
                     x.MapProperty(y => y.CustomerId).SetIsRequired(true);
                     x.MapProperty(y => y.StartDate).SetIsRequired(true).SetDefaultValue(DateTime.Now);
                     x.MapProperty(y => y.ModifiedAt).SetIsRequired(true);

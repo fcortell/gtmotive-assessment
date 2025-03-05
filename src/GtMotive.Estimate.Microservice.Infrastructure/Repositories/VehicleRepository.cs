@@ -11,7 +11,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
         public VehicleRepository(IMongoService mongoClient)
             : base(mongoClient)
         {
-            _vehicles = mongoClient.MongoClient.GetDatabase("GTMotive").GetCollection<Vehicle>("Vehicle");
+            _vehicles = mongoClient.MongoClient.GetDatabase("GTMotive").GetCollection<Vehicle>("Vehicles");
         }
 
         public bool MarkVehicleAsAvailable(string id)

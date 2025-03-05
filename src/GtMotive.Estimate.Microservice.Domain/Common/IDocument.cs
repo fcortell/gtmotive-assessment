@@ -25,6 +25,7 @@ namespace GtMotive.Estimate.Microservice.Domain.Common
         /// <summary>
         /// Gets or sets the date and time when the document was last modified.
         /// </summary>
+        [BsonElement]
         DateTime ModifiedAt { get; set; }
     }
 }
