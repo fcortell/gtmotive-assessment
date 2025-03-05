@@ -18,8 +18,4 @@
 	  <PackageReference Update="Microsoft.Extensions.Options" Version="9.0.2" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="UseCases\Fleet\" />
-	</ItemGroup>
-
 </Project>

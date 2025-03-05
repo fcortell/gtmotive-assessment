@@ -50,7 +50,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Rent.RentVehic
 
             var vehicleRequested = await _vehicleRepository.FindByIdAsync(input.VehicleId, CancellationToken.None);
 
-            if ((vehicleRequested != null && vehicleRequested.IsAvailable) || carRentalCollision.Count > 0)
+            if ((vehicleRequested != null && !vehicleRequested.IsAvailable) || carRentalCollision.Count > 0)
             {
                 throw new DomainException($"Vehicle {input.VehicleId} not available to rent.");
             }
