@@ -42,7 +42,7 @@ namespace GtMotive.Estimate.Microservice.UnitTests.Api
         public async Task HandleValidRequestReturnsOkResult()
         {
             // Arrange
-            var request = new RentVehicleCommand() { VehicleId = "vehicleId", CustomerId = "customerId", StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(1), Comments = "comments" };
+            var request = new RentVehicleCommand() { VehicleId = "vehicleId", CustomerId = "customerId", PlannedStartDate = DateTime.Now, PlannedEndDate = DateTime.Now.AddDays(1), Comments = "comments" };
             var cancellationToken = CancellationToken.None;
             var sessionMock = new Mock<IClientSessionHandle>();
             var output = new RentVehicleOutput("rentalId");
@@ -67,8 +67,8 @@ namespace GtMotive.Estimate.Microservice.UnitTests.Api
             {
                 VehicleId = "vehicleId",
                 CustomerId = "customerId",
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(1),
+                PlannedStartDate = DateTime.Now,
+                PlannedEndDate = DateTime.Now.AddDays(1),
                 Comments = "comments"
             };
 
