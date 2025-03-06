@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <Platforms>AnyCPU;x64</Platforms>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Specs\" />
+    <None Update="appsettings.IntegrationTest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

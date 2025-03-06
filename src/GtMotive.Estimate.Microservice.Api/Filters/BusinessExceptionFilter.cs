@@ -1,4 +1,5 @@
 ﻿using System;
+using GtMotive.Estimate.Microservice.ApplicationCore.Exceptions;
 using GtMotive.Estimate.Microservice.Domain;
 using GtMotive.Estimate.Microservice.Domain.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -37,6 +38,21 @@ namespace GtMotive.Estimate.Microservice.Api.Filters
                 };
 
                 _appLogger.LogWarning("Domain Exception: {status} - {detail}", problemDetails.Status, problemDetails.Detail);
+
+                context.Result = new BadRequestObjectResult(problemDetails);
+                context.Exception = null;
+            }
+            else if (context.Exception is ValidationException)
+            {
+                var problemDetails = new ProblemDetails
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                    Type = "ValidationFailure",
+                    Title = "Validation error",
+                    Detail = "One or more validation errors has occurred"
+                };
+
+                _appLogger.LogError(context.Exception, "Validation Error");
 
                 context.Result = new BadRequestObjectResult(problemDetails);
                 context.Exception = null;

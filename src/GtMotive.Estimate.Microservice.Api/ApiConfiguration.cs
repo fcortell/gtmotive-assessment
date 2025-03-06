@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using FluentValidation;
 using GtMotive.Estimate.Microservice.Api.Authorization;
 using GtMotive.Estimate.Microservice.Api.DependencyInjection;
 using GtMotive.Estimate.Microservice.Api.Filters;
-using GtMotive.Estimate.Microservice.Api.UseCases.Rent.RentVehicle;
 using GtMotive.Estimate.Microservice.ApplicationCore;
+using GtMotive.Estimate.Microservice.ApplicationCore.Behaviours;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,8 +46,8 @@ namespace GtMotive.Estimate.Microservice.Api
         {
             services.AddAuthorization(AuthorizationOptionsExtensions.Configure);
             services.AddMediatR(typeof(ApiConfiguration).GetTypeInfo().Assembly);
-            services.AddMediatR(typeof(RentVehicleCommand));
-
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+            services.AddValidatorsFromAssembly(typeof(ApiConfiguration).GetTypeInfo().Assembly);
             services.AddUseCases();
             services.AddPresenters();
         }

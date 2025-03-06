@@ -16,7 +16,11 @@ namespace GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseEnvironment("IntegrationTest")
                 .UseDefaultServiceProvider(options => { options.ValidateScopes = true; })
-                .ConfigureAppConfiguration((context, builder) => { builder.AddEnvironmentVariables(); })
+                .ConfigureAppConfiguration((context, builder) =>
+                {
+                    builder.AddJsonFile("appsettings.IntegrationTest.json", optional: false, reloadOnChange: false);
+                    builder.AddEnvironmentVariables();
+                })
                 .UseStartup<Startup>();
 
             Server = new TestServer(hostBuilder);
