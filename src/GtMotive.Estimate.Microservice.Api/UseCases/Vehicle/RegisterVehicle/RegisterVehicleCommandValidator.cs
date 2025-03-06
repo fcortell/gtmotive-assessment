@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System;
+using FluentValidation;
 
 namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.RegisterVehicle
 {
@@ -9,7 +10,7 @@ namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.RegisterVehicle
             RuleFor(x => x.Brand).NotEmpty();
             RuleFor(x => x.Model).NotEmpty();
             RuleFor(x => x.LicensePlate).NotEmpty();
-            RuleFor(x => x.Year).NotEmpty();
+            RuleFor(x => x.Year).NotEmpty().GreaterThanOrEqualTo(DateTime.Now.Year - 5); // Not older than 5 years
             RuleFor(x => x.Color).NotEmpty();
             RuleFor(x => x.PricePerDay).NotEmpty();
         }
