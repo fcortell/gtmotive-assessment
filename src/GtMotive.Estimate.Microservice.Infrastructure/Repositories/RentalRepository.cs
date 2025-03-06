@@ -46,6 +46,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
                     .Set(x => x.ModifiedAt, DateTime.Now)
                     .Set(x => x.Comment, rental.Comment)
                     .Set(x => x.VehicleId, rental.VehicleId)
+                    .Set(x => x.EndDate, rental.EndDate)
                     .Set(x => x.CustomerId, rental.CustomerId);
                 await _dbContext.UpdateOneAsync(filter, update);
             }
