@@ -38,7 +38,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb
                     x.MapProperty(y => y.CreatedAt).SetIsRequired(true).SetDefaultValue(DateTime.Now);
                     x.MapProperty(y => y.CreatedBy).SetIsRequired(true);
                     x.MapProperty(y => y.ModifiedBy).SetIsRequired(true);
-                    x.MapProperty(y => y.Description).SetIsRequired(true);
+                    x.MapProperty(y => y.Description).SetIsRequired(false);
                     x.MapProperty(y => y.IsDeleted).SetIsRequired(true).SetDefaultValue(false);
                     x.MapProperty(y => y.IsAvailable).SetIsRequired(true).SetDefaultValue(true);
                 });
