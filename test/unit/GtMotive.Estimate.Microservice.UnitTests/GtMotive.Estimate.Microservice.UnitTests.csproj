@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentResults" Version="3.16.0" />
     <PackageReference Include="Moq" Version="4.16.0" />
   </ItemGroup>
 
@@ -25,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Api\" />
     <Folder Include="ApplicationCore\" />
     <Folder Include="Infrastructure\" />
   </ItemGroup>
