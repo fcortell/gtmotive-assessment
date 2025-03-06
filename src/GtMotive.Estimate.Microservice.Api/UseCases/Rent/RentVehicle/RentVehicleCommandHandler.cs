@@ -26,8 +26,8 @@ namespace GtMotive.Estimate.Microservice.Api.UseCases.Rent.RentVehicle
                 {
                     VehicleId = request.VehicleId,
                     CustomerId = request.CustomerId,
-                    StartDate = request.StartDate,
-                    EndDate = request.EndDate,
+                    PlannedStartDate = request.PlannedStartDate,
+                    PlannedEndDate = request.PlannedEndDate,
                     Comments = request.Comments
                 };
 

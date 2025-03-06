@@ -41,9 +41,9 @@ namespace GtMotive.Estimate.Microservice.Domain.Rental
         /// Retrieves scheduled rentals for a specific vehicle within a date range asynchronously.
         /// </summary>
         /// <param name="vehicleId">The ID of the vehicle.</param>
-        /// <param name="startDate">The start date of the rental period.</param>
-        /// <param name="endDate">The end date of the rental period.</param>
+        /// <param name="plannedStartDate">The start date of the rental period.</param>
+        /// <param name="plannedEndDate">The end date of the rental period.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains a list of scheduled rentals.</returns>
-        Task<List<Rental>> GetScheduledRentalsByVehicle(string vehicleId, DateTime startDate, DateTime endDate);
+        Task<List<Rental>> GetScheduledRentalsByVehicle(string vehicleId, DateTime plannedStartDate, DateTime plannedEndDate);
     }
 }

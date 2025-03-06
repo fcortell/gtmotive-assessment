@@ -41,7 +41,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Rent.RentVehic
             }
 
             var activeRental = await _rentalRepository.GetActiveRentalByCustomer(input.CustomerId);
-            var carRentalCollision = await _rentalRepository.GetScheduledRentalsByVehicle(input.VehicleId, input.StartDate, input.EndDate);
+            var carRentalCollision = await _rentalRepository.GetScheduledRentalsByVehicle(input.VehicleId, input.PlannedStartDate, input.PlannedEndDate);
 
             if (activeRental != null)
             {
@@ -59,8 +59,8 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Rent.RentVehic
             {
                 Comment = input.Comments,
                 CustomerId = input.CustomerId,
-                StartDate = input.StartDate,
-                EndDate = input.EndDate,
+                PlannedStartDate = input.PlannedStartDate,
+                PlannedEndDate = input.PlannedEndDate,
                 VehicleId = input.VehicleId,
                 ModifiedAt = DateTime.Now
             };

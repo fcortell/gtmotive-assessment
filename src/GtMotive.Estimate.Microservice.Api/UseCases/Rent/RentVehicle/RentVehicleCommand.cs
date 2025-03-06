@@ -11,9 +11,9 @@ namespace GtMotive.Estimate.Microservice.Api.UseCases.Rent.RentVehicle
 
         public string CustomerId { get; init; }
 
-        public DateTime StartDate { get; init; }
+        public DateTime PlannedStartDate { get; init; }
 
-        public DateTime EndDate { get; init; }
+        public DateTime PlannedEndDate { get; init; }
 
         public string Comments { get; init; }
     }

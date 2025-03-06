@@ -25,7 +25,12 @@ namespace GtMotive.Estimate.Microservice.Domain.Rental
         /// <summary>
         /// Gets or sets the start date of the rental period.
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public DateTime PlannedStartDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the planned end date of the rental period.
+        /// </summary>
+        public DateTime? PlannedEndDate { get; set; }
 
         /// <summary>
         /// Gets or sets the end date of the rental period.

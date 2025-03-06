@@ -52,10 +52,10 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.MongoDb
                     x.MapIdProperty(y => y.Id).SetIdGenerator(StringObjectIdGenerator.Instance).SetSerializer(new StringSerializer(MongoDB.Bson.BsonType.ObjectId));
                     x.MapProperty(y => y.VehicleId).SetIsRequired(true).SetSerializer(new StringSerializer(MongoDB.Bson.BsonType.ObjectId));
                     x.MapProperty(y => y.CustomerId).SetIsRequired(true);
-                    x.MapProperty(y => y.StartDate).SetIsRequired(true).SetDefaultValue(DateTime.Now);
+                    x.MapProperty(y => y.PlannedStartDate).SetIsRequired(true).SetDefaultValue(DateTime.Now);
                     x.MapProperty(y => y.ModifiedAt).SetIsRequired(true);
                     x.MapProperty(y => y.CreatedAt).SetIsRequired(true).SetDefaultValue(DateTime.Now);
-                    x.MapProperty(y => y.EndDate).SetIsRequired(false).SetIgnoreIfNull(true);
+                    x.MapProperty(y => y.PlannedEndDate).SetIsRequired(false).SetIgnoreIfNull(true);
                     x.MapProperty(y => y.Comment).SetIgnoreIfNull(true);
                 });
             }

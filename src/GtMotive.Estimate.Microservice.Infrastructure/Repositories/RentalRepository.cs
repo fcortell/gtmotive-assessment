@@ -31,7 +31,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
 
         public async Task<Rental> GetActiveRentalByCustomer(string customerId)
         {
-            return await _dbContext.Find(x => x.CustomerId == customerId).FirstOrDefaultAsync();
+            return await _dbContext.Find(x => x.CustomerId == customerId && x.EndDate == null).FirstOrDefaultAsync();
         }
 
         public async Task Update(Rental rental)
@@ -41,8 +41,8 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
                 var filter = Builders<Rental>.Filter.Eq("Id", rental.Id);
 
                 var update = Builders<Rental>.Update
-                    .Set(x => x.StartDate, rental.StartDate)
-                    .Set(x => x.EndDate, rental.EndDate)
+                    .Set(x => x.PlannedStartDate, rental.PlannedStartDate)
+                    .Set(x => x.PlannedEndDate, rental.PlannedEndDate)
                     .Set(x => x.ModifiedAt, DateTime.Now)
                     .Set(x => x.Comment, rental.Comment)
                     .Set(x => x.VehicleId, rental.VehicleId)
@@ -53,9 +53,9 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
             return;
         }
 
-        public async Task<List<Rental>> GetScheduledRentalsByVehicle(string vehicleId, DateTime startDate, DateTime endDate)
+        public async Task<List<Rental>> GetScheduledRentalsByVehicle(string vehicleId, DateTime plannedStartDate, DateTime plannedEndDate)
         {
-            return await _dbContext.Find(x => x.VehicleId == vehicleId && x.StartDate >= startDate && x.EndDate <= endDate).ToListAsync();
+            return await _dbContext.Find(x => x.VehicleId == vehicleId && x.PlannedStartDate >= plannedStartDate && x.PlannedEndDate <= plannedEndDate && x.EndDate == null).ToListAsync();
         }
     }
 }
