@@ -10,7 +10,7 @@ using Xunit;
 
 [assembly: CLSCompliant(false)]
 
-namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
+namespace GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure
 {
     public sealed class CompositionRootTestFixture : IDisposable, IAsyncLifetime
     {

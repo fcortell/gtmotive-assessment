@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure
+namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
 {
     public class Startup
     {

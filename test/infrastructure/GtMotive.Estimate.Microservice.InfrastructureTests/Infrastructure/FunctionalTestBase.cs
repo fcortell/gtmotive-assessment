@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Xunit;
 
-namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
+namespace GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure
 {
     [Collection(TestCollections.Functional)]
     public abstract class FunctionalTestBase : IAsyncLifetime

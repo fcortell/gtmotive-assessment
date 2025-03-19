@@ -1,50 +1,99 @@
-﻿using System.Threading;
+﻿using System;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
-using FluentResults;
-using GtMotive.Estimate.Microservice.Api.UseCases.Vehicle.RegisterVehicle;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicle.RegisterVehicle;
-using GtMotive.Estimate.Microservice.Domain.Vehicle;
 using GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace GtMotive.Estimate.Microservice.FunctionalTests.Specs
 {
-    public class RegisterVehicleTests : FunctionalTestBase
+    [Collection(TestCollections.TestServer)]
+    public class RegisterVehicleTests : IClassFixture<GenericInfrastructureTestServerFixture>
     {
-        public RegisterVehicleTests(CompositionRootTestFixture fixture)
-            : base(fixture)
+        private readonly HttpClient _client;
+
+        public RegisterVehicleTests(GenericInfrastructureTestServerFixture fixture)
         {
+            if (fixture is null)
+            {
+                throw new ArgumentNullException(nameof(fixture));
+            }
+
+            _client = fixture.Server.CreateClient();
         }
 
         [Fact]
-        public async Task RegisterVehicleInputShouldRegisterVehicleSuccessfully()
+        public async Task RegisterVehicleShouldReturnSuccessStatusCode()
         {
-            var vehicleId = string.Empty;
-
             // Arrange
-            var command = new RegisterVehicleCommand()
+            var vehicle = new RegisterVehicleInput
             {
                 Brand = "Toyota",
                 Model = "Corolla",
-                Year = 2020
+                Year = 2021,
+                PricePerDay = 10,
+                Color = "Black",
+                LicensePlate = "A888EK"
             };
 
+            using var content = new StringContent(JsonConvert.SerializeObject(vehicle), Encoding.UTF8, "application/json");
+            var uri = new Uri("/api/Vehicle/RegisterVehicle", UriKind.Relative);
+
             // Act
-            await Fixture.UsingHandlerForRequestResponse<RegisterVehicleCommand, Result<RegisterVehicleOutput>>(async handler =>
-            {
-                var result = await handler.Handle(command, default);
-                vehicleId = result.Value.VehicleId;
-            });
+            var response = await _client.PostAsync(uri, content);
 
             // Assert
-            await Fixture.UsingRepository<IVehicleRepository>(async repository =>
+            Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task RegisterVehicleShouldReturnBadRequestStatusCodeForOldVehicle()
+        {
+            // Arrange
+            var vehicle = new RegisterVehicleInput
             {
-                var vehicle = await repository.FindByIdAsync(vehicleId, CancellationToken.None);
-                Assert.NotNull(vehicle);
-                Assert.Equal(command.Brand, vehicle.Brand);
-                Assert.Equal(command.Model, vehicle.Model);
-                Assert.Equal(command.Year, vehicle.Year);
-            });
+                Brand = "Toyota",
+                Model = "Corolla",
+                Year = 2015,
+                PricePerDay = 10,
+                Color = "Black",
+                LicensePlate = "A888EK"
+            };
+
+            using var content = new StringContent(JsonConvert.SerializeObject(vehicle), Encoding.UTF8, "application/json");
+            var uri = new Uri("/api/Vehicle/RegisterVehicle", UriKind.Relative);
+
+            // Act
+            var response = await _client.PostAsync(uri, content);
+
+            // Assert
+            Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
+        public async Task RegisterVehicleShouldReturnBadRequestForInvalidData()
+        {
+            // Arrange
+            var vehicle = new RegisterVehicleInput
+            {
+                Brand = null,
+                Model = "Corolla",
+                Year = 2021,
+                PricePerDay = 10,
+                Color = "Black",
+                LicensePlate = "A888EK"
+            };
+
+            using var content = new StringContent(JsonConvert.SerializeObject(vehicle), Encoding.UTF8, "application/json");
+            var uri = new Uri("/api/Vehicle/RegisterVehicle", UriKind.Relative);
+
+            // Act
+            var response = await _client.PostAsync(uri, content);
+
+            // Assert
+            Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
         }
     }
 }

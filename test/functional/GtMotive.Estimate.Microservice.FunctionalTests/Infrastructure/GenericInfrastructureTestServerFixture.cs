@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 [assembly: CLSCompliant(false)]
 
-namespace GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure
+namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
 {
     public sealed class GenericInfrastructureTestServerFixture : IDisposable
     {

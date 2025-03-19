@@ -2,6 +2,6 @@
 {
     public static class TestCollections
     {
-        public const string TestServer = "TestServer";
+        public const string Functional = "Functional";
     }
 }

@@ -13,15 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microserv
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{32507AA8-A629-48CC-9F32-CBCF746E2117}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "functional", "functional", "{C9CBCBB3-AF99-4FDE-865A-F069C5253E70}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{C9CBCBB3-AF99-4FDE-865A-F069C5253E70}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{2CC1761B-D5ED-4CB7-926C-D2CEDA6B9644}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "functional", "functional", "{2CC1761B-D5ED-4CB7-926C-D2CEDA6B9644}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit", "unit", "{9759AD80-2ECC-4B44-8D15-B96BD29CB584}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.FunctionalTests", "..\test\functional\GtMotive.Estimate.Microservice.FunctionalTests\GtMotive.Estimate.Microservice.FunctionalTests.csproj", "{0CCA81DE-A370-4454-A3D7-D4597CDD3981}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.InfrastructureTests", "..\test\infrastructure\GtMotive.Estimate.Microservice.InfrastructureTests\GtMotive.Estimate.Microservice.InfrastructureTests.csproj", "{469DA050-93EC-44F6-AA33-D7072B1149E5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.UnitTests", "..\test\unit\GtMotive.Estimate.Microservice.UnitTests\GtMotive.Estimate.Microservice.UnitTests.csproj", "{5F6CD05A-A921-49B8-BF96-1B931022439C}"
 EndProject
@@ -33,6 +29,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.Domain", "GtMotive.Estimate.Microservice.Domain\GtMotive.Estimate.Microservice.Domain.csproj", "{157090A2-A86C-4F2A-A31D-3072779E4D99}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GtMotive.Estimate.Microservice.Host", "GtMotive.Estimate.Microservice.Host\GtMotive.Estimate.Microservice.Host.csproj", "{9F5951E0-9865-4EE9-A32A-DC545BF21C95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GtMotive.Estimate.Microservice.FunctionalTests", "..\test\functional\GtMotive.Estimate.Microservice.FunctionalTests\GtMotive.Estimate.Microservice.FunctionalTests.csproj", "{9AF1FBDA-1DA8-4956-9E40-A93CEA3F7C30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GtMotive.Estimate.Microservice.InfrastructureTests", "..\test\infrastructure\GtMotive.Estimate.Microservice.InfrastructureTests\GtMotive.Estimate.Microservice.InfrastructureTests.csproj", "{18F6C022-294C-422A-BF7B-8D43D9B095A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,22 +66,6 @@ Global
 		{30E8BE33-E5C4-4B44-8E36-8FED93966ED2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30E8BE33-E5C4-4B44-8E36-8FED93966ED2}.Release|x64.ActiveCfg = Release|x64
 		{30E8BE33-E5C4-4B44-8E36-8FED93966ED2}.Release|x64.Build.0 = Release|x64
-		{0CCA81DE-A370-4454-A3D7-D4597CDD3981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0CCA81DE-A370-4454-A3D7-D4597CDD3981}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0CCA81DE-A370-4454-A3D7-D4597CDD3981}.Debug|x64.ActiveCfg = Debug|x64
-		{0CCA81DE-A370-4454-A3D7-D4597CDD3981}.Debug|x64.Build.0 = Debug|x64
-		{0CCA81DE-A370-4454-A3D7-D4597CDD3981}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0CCA81DE-A370-4454-A3D7-D4597CDD3981}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0CCA81DE-A370-4454-A3D7-D4597CDD3981}.Release|x64.ActiveCfg = Release|x64
-		{0CCA81DE-A370-4454-A3D7-D4597CDD3981}.Release|x64.Build.0 = Release|x64
-		{469DA050-93EC-44F6-AA33-D7072B1149E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{469DA050-93EC-44F6-AA33-D7072B1149E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{469DA050-93EC-44F6-AA33-D7072B1149E5}.Debug|x64.ActiveCfg = Debug|x64
-		{469DA050-93EC-44F6-AA33-D7072B1149E5}.Debug|x64.Build.0 = Debug|x64
-		{469DA050-93EC-44F6-AA33-D7072B1149E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{469DA050-93EC-44F6-AA33-D7072B1149E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{469DA050-93EC-44F6-AA33-D7072B1149E5}.Release|x64.ActiveCfg = Release|x64
-		{469DA050-93EC-44F6-AA33-D7072B1149E5}.Release|x64.Build.0 = Release|x64
 		{5F6CD05A-A921-49B8-BF96-1B931022439C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F6CD05A-A921-49B8-BF96-1B931022439C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F6CD05A-A921-49B8-BF96-1B931022439C}.Debug|x64.ActiveCfg = Debug|x64
@@ -106,6 +90,22 @@ Global
 		{9F5951E0-9865-4EE9-A32A-DC545BF21C95}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9F5951E0-9865-4EE9-A32A-DC545BF21C95}.Release|x64.ActiveCfg = Release|x64
 		{9F5951E0-9865-4EE9-A32A-DC545BF21C95}.Release|x64.Build.0 = Release|x64
+		{9AF1FBDA-1DA8-4956-9E40-A93CEA3F7C30}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{9AF1FBDA-1DA8-4956-9E40-A93CEA3F7C30}.Debug|Any CPU.Build.0 = Debug|x64
+		{9AF1FBDA-1DA8-4956-9E40-A93CEA3F7C30}.Debug|x64.ActiveCfg = Debug|x64
+		{9AF1FBDA-1DA8-4956-9E40-A93CEA3F7C30}.Debug|x64.Build.0 = Debug|x64
+		{9AF1FBDA-1DA8-4956-9E40-A93CEA3F7C30}.Release|Any CPU.ActiveCfg = Release|x64
+		{9AF1FBDA-1DA8-4956-9E40-A93CEA3F7C30}.Release|Any CPU.Build.0 = Release|x64
+		{9AF1FBDA-1DA8-4956-9E40-A93CEA3F7C30}.Release|x64.ActiveCfg = Release|x64
+		{9AF1FBDA-1DA8-4956-9E40-A93CEA3F7C30}.Release|x64.Build.0 = Release|x64
+		{18F6C022-294C-422A-BF7B-8D43D9B095A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18F6C022-294C-422A-BF7B-8D43D9B095A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18F6C022-294C-422A-BF7B-8D43D9B095A0}.Debug|x64.ActiveCfg = Debug|x64
+		{18F6C022-294C-422A-BF7B-8D43D9B095A0}.Debug|x64.Build.0 = Debug|x64
+		{18F6C022-294C-422A-BF7B-8D43D9B095A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18F6C022-294C-422A-BF7B-8D43D9B095A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18F6C022-294C-422A-BF7B-8D43D9B095A0}.Release|x64.ActiveCfg = Release|x64
+		{18F6C022-294C-422A-BF7B-8D43D9B095A0}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,11 +118,11 @@ Global
 		{C9CBCBB3-AF99-4FDE-865A-F069C5253E70} = {32507AA8-A629-48CC-9F32-CBCF746E2117}
 		{2CC1761B-D5ED-4CB7-926C-D2CEDA6B9644} = {32507AA8-A629-48CC-9F32-CBCF746E2117}
 		{9759AD80-2ECC-4B44-8D15-B96BD29CB584} = {32507AA8-A629-48CC-9F32-CBCF746E2117}
-		{0CCA81DE-A370-4454-A3D7-D4597CDD3981} = {C9CBCBB3-AF99-4FDE-865A-F069C5253E70}
-		{469DA050-93EC-44F6-AA33-D7072B1149E5} = {2CC1761B-D5ED-4CB7-926C-D2CEDA6B9644}
 		{5F6CD05A-A921-49B8-BF96-1B931022439C} = {9759AD80-2ECC-4B44-8D15-B96BD29CB584}
 		{157090A2-A86C-4F2A-A31D-3072779E4D99} = {DAFC007D-B55D-4498-B94E-ACFB38698698}
 		{9F5951E0-9865-4EE9-A32A-DC545BF21C95} = {DAFC007D-B55D-4498-B94E-ACFB38698698}
+		{9AF1FBDA-1DA8-4956-9E40-A93CEA3F7C30} = {2CC1761B-D5ED-4CB7-926C-D2CEDA6B9644}
+		{18F6C022-294C-422A-BF7B-8D43D9B095A0} = {C9CBCBB3-AF99-4FDE-865A-F069C5253E70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {082C0E30-A2C7-439B-AE7B-129FEC797BEA}

@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure
+namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
 {
     [Collection(TestCollections.TestServer)]
     public abstract class InfrastructureTestBase

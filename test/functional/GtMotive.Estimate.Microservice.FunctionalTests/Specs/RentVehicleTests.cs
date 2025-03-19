@@ -1,64 +1,70 @@
 ﻿using System;
-using System.Threading;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
-using FluentResults;
-using GtMotive.Estimate.Microservice.Api.UseCases.Rent.CheckoutVehicle;
-using GtMotive.Estimate.Microservice.Api.UseCases.Rent.RentVehicle;
-using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Rent.CheckoutVehicle;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Rent.RentVehicle;
-using GtMotive.Estimate.Microservice.Domain.Vehicle;
 using GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace GtMotive.Estimate.Microservice.FunctionalTests.Specs
 {
-    public class RentVehicleTests : FunctionalTestBase
+    [Collection(TestCollections.TestServer)]
+    public class RentVehicleTests : IClassFixture<GenericInfrastructureTestServerFixture>
     {
-        public RentVehicleTests(CompositionRootTestFixture fixture)
-            : base(fixture)
+        private readonly HttpClient _client;
+
+        public RentVehicleTests(GenericInfrastructureTestServerFixture fixture)
         {
+            if (fixture is null)
+            {
+                throw new ArgumentNullException(nameof(fixture));
+            }
+
+            _client = fixture.Server.CreateClient();
         }
 
         [Fact]
-        public async Task RentVehicleInputShouldRentVehicleSuccessfully()
+        public async Task RentVehicleShouldReturnSuccessStatusCode()
         {
-            var vehicleId = "67c5ff33fc13ae1a4f527a5a"; // Assume this vehicle ID exists in the system
-            var rentalId = string.Empty;
-
             // Arrange
-            var rentCommand = new RentVehicleCommand()
+            var rentRequest = new RentVehicleInput
             {
-                VehicleId = vehicleId,
-                CustomerId = "John Doe",
-                PlannedStartDate = DateTime.Now,
-                PlannedEndDate = DateTime.Now.AddDays(7)
+                VehicleId = default(MongoDB.Bson.ObjectId).ToString(),
+                PlannedStartDate = DateTime.UtcNow,
+                PlannedEndDate = DateTime.UtcNow.AddDays(7),
+                CustomerId = "111111P"
             };
+
+            using var content = new StringContent(JsonConvert.SerializeObject(rentRequest), Encoding.UTF8, "application/json");
+            var uri = new Uri("/api/Rental/RentVehicle", UriKind.Relative);
 
             // Act
-            await Fixture.UsingHandlerForRequestResponse<RentVehicleCommand, Result<RentVehicleOutput>>(async handler =>
-            {
-                var result = await handler.Handle(rentCommand, default);
-                rentalId = result.Value.RentalId;
-            });
+            var response = await _client.PostAsync(uri, content);
 
             // Assert
-            await Fixture.UsingRepository<IVehicleRepository>(async repository =>
-            {
-                var vehicle = await repository.FindByIdAsync(vehicleId, CancellationToken.None);
-                Assert.NotNull(vehicle);
-                Assert.Equal(rentCommand.VehicleId, vehicle.Id);
-            });
+            Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
+        }
 
-            // Cleanup
-            var returnCommand = new CheckoutVehicleCommand()
+        [Fact]
+        public async Task RentVehicleShouldReturnBadRequestForMissingCustomerId()
+        {
+            // Arrange
+            var rentRequest = new RentVehicleInput
             {
-                RentalId = rentalId,
+                VehicleId = default(MongoDB.Bson.ObjectId).ToString(),
+                PlannedStartDate = DateTime.UtcNow,
+                PlannedEndDate = DateTime.UtcNow.AddDays(7),
             };
 
-            await Fixture.UsingHandlerForRequestResponse<CheckoutVehicleCommand, Result<CheckoutVehicleOutput>>(async handler =>
-            {
-                await handler.Handle(returnCommand, default);
-            });
+            using var content = new StringContent(JsonConvert.SerializeObject(rentRequest), Encoding.UTF8, "application/json");
+            var uri = new Uri("/api/Rental/RentVehicle", UriKind.Relative);
+
+            // Act
+            var response = await _client.PostAsync(uri, content);
+
+            // Assert
+            Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
         }
     }
 }

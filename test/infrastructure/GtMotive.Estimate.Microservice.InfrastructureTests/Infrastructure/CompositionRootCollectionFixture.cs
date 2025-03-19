@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace GtMotive.Estimate.Microservice.FunctionalTests.Infrastructure
+namespace GtMotive.Estimate.Microservice.InfrastructureTests.Infrastructure
 {
     [CollectionDefinition(TestCollections.Functional)]
     public class CompositionRootCollectionFixture : ICollectionFixture<CompositionRootTestFixture>
